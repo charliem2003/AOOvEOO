@@ -20,7 +20,7 @@ library(fossil)
 library(ape)
 
 ### read in point data (shapefile) for all species
-fernsShp <- read.shapefile("Data/Ferns")
+fernsShp <- read.shapefile("Data/Ferns/Ferns")
 coords <- fernsShp$dbf$dbf
 
 ### remove coords outside of americas
@@ -107,4 +107,4 @@ for(sp in 1:length(species)) {
 }
 
 ### if you want to save the results
-write.csv(cmc, "Results/All_cmc.csv", quote = F, row.names = F)
+write.csv(cmc, "Results/All_cmc.csv", quote = FALSE, row.names = FALSE)

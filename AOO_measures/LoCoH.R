@@ -23,7 +23,7 @@ library(raster)
 library(rgeos)
 
 ### read in point data (shapefile) for all species
-fernsShp <- read.shapefile("Data/Ferns")
+fernsShp <- read.shapefile("Data/Ferns/Ferns")
 coords <- fernsShp$dbf$dbf
 
 ### remove coords outside of americas
@@ -45,8 +45,11 @@ locoh$species <- gsub(" ", "_", locoh$species)
 ### loop through species
 pb <- txtProgressBar(max = length(species), style = 3)
 for(sp in 1:length(species)) {
+  
   ### subset points for selected species and remove duplicates
   coordsSp <- coords[coords$BINOMIAL == as.character(species[sp]), c("LONGITUDE", "LATITUDE")]
+  coordsSp <- coordsSp[!duplicated(coordsSp), ]
+  # print(paste(sp, nrow(coordsSp), sep = " - "))
   
   if(nrow(coordsSp) > 2) {
     coordsSp <- SpatialPoints(coordsSp, proj4string = CRS("+proj=longlat +ellps=WGS84 +degrees=TRUE"))
@@ -100,4 +103,4 @@ for(sp in 1:length(species)) {
 }
 
 ### if you want to save the results
-write.csv(locoh, "Results/All_locoh.csv", quote = F, row.names = F)
+write.csv(locoh, "Results/All_locoh.csv", quote = FALSE, row.names = FALSE)
