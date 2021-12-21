@@ -12,8 +12,8 @@ Links for each method are:
 
 ### EOO measures
 
-- MCP (IUCN-recommended method; IUCN 2019)
-- Alpha hulls (Burgman and Fox, 2003)
+- [MCP](https://github.com/charliem2003/AOOvEOO/blob/master/EOO_measures/MCP.R) (IUCN-recommended method; IUCN 2019)
+- [Alpha hull](https://github.com/charliem2003/AOOvEOO/blob/master/EOO_measures/alpha_hull.R) (explores alpha values between 1-6; Burgman and Fox, 2003)
 - [LoCoH](https://github.com/charliem2003/AOOvEOO/blob/master/EOO_measures/LoCoH.R) (Getz et al., 2007; Getz and Wilmers, 2004)
 
 ### AOO measures
