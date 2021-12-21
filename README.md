@@ -18,7 +18,8 @@ Links for each method are:
 
 ### AOO measures
 
-- Grid overlay at multiple grain sizes (IUCN-recommended method at 2×2 km; IUCN 2019)
+- [Grid overlay](https://github.com/charliem2003/AOOvEOO/blob/master/AOO_measures/grid_overlay.R) at multiple grain sizes (IUCN-recommended method at 2×2 km; IUCN 2019)
+- [Variables grain](https://github.com/charliem2003/AOOvEOO/blob/master/AOO_measures/variable_grain.R) (Willis et al., 2003)
 - [Circular buffers](https://github.com/charliem2003/AOOvEOO/blob/master/AOO_measures/circular_buffers.R) (Breiner and Bergamini, 2018)
 - [CMC](https://github.com/charliem2003/AOOvEOO/blob/master/AOO_measures/CMC.R) (Cartographic Method of Conglomerates; Hernández and Navarro, 2007)
 - [Occupancy downscaling](https://github.com/charliem2003/AOOvEOO/blob/master/AOO_measures/occupancy_downscaling.R) (Groom et al., 2018; Marsh et al., 2019) using the downscale package (Marsh et al., 2018)
