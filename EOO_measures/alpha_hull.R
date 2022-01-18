@@ -21,12 +21,6 @@ library(raster)
 fernsShp <- read.shapefile("Data/Ferns/Ferns")
 coords <- fernsShp$dbf$dbf
 
-### remove coords outside of americas
-coords <- coords[coords$LONGITUDE > -126, ]
-coords <- coords[coords$LONGITUDE <  -34, ]
-coords <- coords[coords$LATITUDE  >  -45, ]
-coords <- coords[coords$LATITUDE  <   52, ]
-
 ### species list
 species <- unique(coords$BINOMIAL)
 
@@ -181,4 +175,4 @@ for(sp in 1:length(species)) {
 }
 
 ### if you want to save the results
-write.csv(alpha, "Results/All_alpha.csv", quote = F, row.names = F)
+write.csv(alpha, "Results/alpha_hull.csv", quote = FALSE, row.names = FALSE)

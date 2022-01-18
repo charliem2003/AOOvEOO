@@ -103,4 +103,4 @@ for(sp in 1:length(species)) {
 }
 
 ### if you want to save the results
-write.csv(locoh, "Results/All_locoh.csv", quote = FALSE, row.names = FALSE)
+write.csv(locoh, "Results/locoh.csv", quote = FALSE, row.names = FALSE)

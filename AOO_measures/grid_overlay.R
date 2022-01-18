@@ -19,12 +19,6 @@ library(raster)
 fernsShp <- read.shapefile("Data/Ferns/Ferns")
 coords <- fernsShp$dbf$dbf
 
-### remove coords outside of americas
-coords <- coords[coords$LONGITUDE > -126, ]
-coords <- coords[coords$LONGITUDE <  -34, ]
-coords <- coords[coords$LATITUDE  >  -45, ]
-coords <- coords[coords$LATITUDE  <   52, ]
-
 ### species list
 species <- unique(coords$BINOMIAL)
 
@@ -79,4 +73,4 @@ for(sp in 1:length(species)) {
 }
 
 ### if you want to save the results
-write.csv(aoo, "All_aoo.csv", quote = F, col.names = T, row.names = F)
+write.csv(aoo, "Results/grid_overlay.csv", quote = FALSE, row.names = FALSE)

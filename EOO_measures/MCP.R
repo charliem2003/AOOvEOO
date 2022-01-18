@@ -19,16 +19,10 @@ library(rgeos)
 fernsShp <- read.shapefile("Data/Ferns/Ferns")
 coords <- fernsShp$dbf$dbf
 
-### remove coords outside of americas
-coords <- coords[coords$LONGITUDE > -126, ]
-coords <- coords[coords$LONGITUDE <  -34, ]
-coords <- coords[coords$LATITUDE  >  -45, ]
-coords <- coords[coords$LATITUDE  <   52, ]
-
 ### species list
 species <- unique(coords$BINOMIAL)
 
-### data frame for storing results using different alpha values
+### data frame for storing results
 mcp <- data.frame(species = species,
                   mcp = NA)
 mcp$species <- gsub(" ", "_", mcp$species)
@@ -49,10 +43,10 @@ for(sp in 1:length(species)) {
     
     ### convert to SpatialPolygons object and calculate area
     hull <- SpatialPolygons(list(Polygons(list(Polygon(coordsHull)), ID=1)))
-    alpha[sp, "mcp"] <- sum(area(hull))
+    mcp[sp, "mcp"] <- sum(area(hull))
   }
   setTxtProgressBar(pb, value = sp)
 }
 
 ### if you want to save the results
-write.csv(mcp, "All_mcp.csv", quote = F, row.names = F)
+write.csv(mcp, "Results/mcp.csv", quote = FALSE, row.names = FALSE)

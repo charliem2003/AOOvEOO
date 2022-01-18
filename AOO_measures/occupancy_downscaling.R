@@ -28,12 +28,6 @@ coords <- fernsShp$dbf$dbf
 coastline <- readOGR(dsn = "Data/coastlines", layer = "continent")
 coastline <- spTransform(coastline, CRS = CRS("+proj=cea +datum=WGS84 +units=km"))
 
-### remove coords outside of americas
-coords <- coords[coords$LONGITUDE > -126, ]
-coords <- coords[coords$LONGITUDE <  -34, ]
-coords <- coords[coords$LATITUDE  >  -45, ]
-coords <- coords[coords$LATITUDE  <   52, ]
-
 ### species list
 species <- unique(coords$BINOMIAL)
 
@@ -46,6 +40,7 @@ downscale <- data.frame(species = species,
                         unique_points = NA,
                         ens.down = NA,
                         pl.down = NA)
+downscale$species <- gsub(" ", "_", downscale$species)
 
 ### loop through species
 pb <- txtProgressBar(max = length(species), style = 3)
@@ -151,7 +146,7 @@ for(sp in 1:length(species)) {
 }
 
 ### if you want to save the results
-write.csv(downscale, "All_downscale.csv", quote = F, col.names = T, row.names = F)
+write.csv(downscale, "Results/occupancy_downscaling.csv", quote = FALSE, row.names = FALSE)
 
 
 

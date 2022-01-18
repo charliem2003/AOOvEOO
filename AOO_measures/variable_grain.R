@@ -19,20 +19,14 @@ library(raster)
 fernsShp <- read.shapefile("Data/Ferns/Ferns")
 coords <- fernsShp$dbf$dbf
 
-### remove coords outside of americas
-coords <- coords[coords$LONGITUDE > -126, ]
-coords <- coords[coords$LONGITUDE <  -34, ]
-coords <- coords[coords$LATITUDE  >  -45, ]
-coords <- coords[coords$LATITUDE  <   52, ]
-
 ### species list
 species <- unique(coords$BINOMIAL)
 
 ### data frame for storing results at different cell widths
 aooVar <- data.frame(species = species,
-                     aoo = NA,
+                     aoo.var = NA,
                      varWidth = NA)
-aooVar$species <- gsub(" ", "_", aoo$species)
+aooVar$species <- gsub(" ", "_", aooVar$species)
 
 ### loop through species
 pb <- txtProgressBar(max = length(species), style = 3)
@@ -47,14 +41,14 @@ for(sp in 1:length(species)) {
     
     ### if only a single point then AOO is 2 km2
     if(length(coordsSp) == 1) {
-      aoo[sp, paste0("aoo", cellWidth)] <- 2
+      aooVar$aoo.var[sp] <- 2
     }
     
     if(length(coordsSp) > 1) {
       ### calculate 1/10th largest pairwise interpoint distances
       dists <- pointDistance(coordsSp, lonlat = FALSE)
       cellWidth <- max(dists) / 10
-      aoo$varWidth[sp] <- cellWidth
+      aooVar$varWidth[sp] <- cellWidth
       
       ### rasterize points at this cell width
       r <- raster(xmn = floor(extent(coordsSp)[1] / cellWidth) * cellWidth,
@@ -66,11 +60,11 @@ for(sp in 1:length(species)) {
       vals <- values(aooRaster)
       vals[vals > 1] <- 1
       vals[is.na(vals)] <- 0
-      aooVar$aoo[sp] <- sum(vals) * (cellWidth ^ 2)
+      aooVar$aoo.var[sp] <- sum(vals) * (cellWidth ^ 2)
     }
   }
   setTxtProgressBar(pb, value = sp)
 }
 
 ### if you want to save the results
-write.csv(aoo, "All_aoo.csv", quote = F, col.names = T, row.names = F)
+write.csv(aooVar, "Results/variable_grain.csv", quote = FALSE, row.names = FALSE)
