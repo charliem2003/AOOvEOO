@@ -13,7 +13,7 @@
 ### N Brummitt. 'The effect of sampling effort and methodology on range size estimates of
 ### poorly-recorded species for IUCN Red List assessments'. In prep.
 ###
-### Charlie Marsh (charliem2003@gmail.com)
+### Charlie Marsh (charlie.marsh@mailbox.org)
 ####################################################################################################
 
 ### libraries required
