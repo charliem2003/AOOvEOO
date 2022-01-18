@@ -6,7 +6,7 @@ A set of R scripts for various methods of measuring geographic range size for IU
 
 *Charles J. Marsh, Mindy M. Syfert, Elina Aletrari, Yoni Gavish, William E. Kunin, Neil Brummitt*
 
-Scripts can be found in the EOO and AOO folders, and uses data collected for the pteridophyte IUCN Sampled Red List Index (SLRI).  All methods generate range size in km<sup>2</sup>. The scripts use an incomplete subset of the data for South and Central American endemics and should not be used for generating real IUCN Red List assessments or other products.
+Scripts can be found in the EOO and AOO folders, and uses data collected for the pteridophyte IUCN Sampled Red List Index (SLRI). All methods generate range size in km<sup>2</sup>. The scripts use an incomplete subset of the data for South and Central American endemics and should not be used for generating real IUCN Red List assessments or other products.
 
 Links for each method are:
 
@@ -23,6 +23,18 @@ Links for each method are:
 - [Circular buffers](https://github.com/charliem2003/AOOvEOO/blob/master/AOO_measures/circular_buffers.R) (Breiner and Bergamini, 2018)
 - [CMC](https://github.com/charliem2003/AOOvEOO/blob/master/AOO_measures/CMC.R) (Cartographic Method of Conglomerates; Hernández and Navarro, 2007)
 - [Occupancy downscaling](https://github.com/charliem2003/AOOvEOO/blob/master/AOO_measures/occupancy_downscaling.R) (Groom et al., 2018; Marsh et al., 2019) using the downscale package (Marsh et al., 2018)
+
+For methods that predict distributions as rasters (such as SDMs or ESH in the paper) you can apply any of the methods by extracting the coordinates of cells predicted to be occupied. For example, assuming the raster (spRas) has predicted presences as 1 and predicted absences as 0:
+
+```
+## extract a data frame (columns = 'x' and 'y') with cell centres of predicted presences
+spPts <- rasterToPoints(r, fun = function(x) {x == 1})
+
+## convert to SpatialPoints object
+spPts <- SpatialPoints(spPts, proj4string = crs(spRas))
+```
+
+From this point you can use it as input for the other functions (reprojecting if necessary)
 
 **References where you can find the original description of the methods**
 
