@@ -4,9 +4,9 @@ A set of R scripts for various methods of measuring geographic range size for IU
 
 **The effect of sampling effort and methodology on range size estimates of poorly-recorded species for IUCN Red List assessments.**
 
-**Charles J. Marsh, Mindy M. Syfert, Elina Aletrari, Yoni Gavish, William E. Kunin, Neil Brummitt**
+*Charles J. Marsh, Mindy M. Syfert, Elina Aletrari, Yoni Gavish, William E. Kunin, Neil Brummitt*
 
-Scripts can be found in the EOO and AOO folders, and uses data collected for the pteridophyte IUCN Sampled Red List Index (SLRI). The scripts uses a subset of the data for South and Central American endemics. If anyone is interested they can easily be converted to stand-alone functions, just message me. All methods generate range size in km^2^.
+Scripts can be found in the EOO and AOO folders, and uses data collected for the pteridophyte IUCN Sampled Red List Index (SLRI).  All methods generate range size in km<sup>2</sup>. The scripts use an incomplete subset of the data for South and Central American endemics and should not be used for generating real IUCN Red List assessments or other products.
 
 Links for each method are:
 
@@ -14,7 +14,7 @@ Links for each method are:
 
 - [MCP](https://github.com/charliem2003/AOOvEOO/blob/master/EOO_measures/MCP.R) (IUCN-recommended method; IUCN 2019)
 - [Alpha hull](https://github.com/charliem2003/AOOvEOO/blob/master/EOO_measures/alpha_hull.R) (explores alpha values between 1-6; Burgman and Fox, 2003)
-- [LoCoH](https://github.com/charliem2003/AOOvEOO/blob/master/EOO_measures/LoCoH.R) (Getz et al., 2007; Getz and Wilmers, 2004)
+- [LoCoH](https://github.com/charliem2003/AOOvEOO/blob/master/EOO_measures/LoCoH.R) using the 3 potential methods (Getz et al., 2007; Getz and Wilmers, 2004)
 
 ### AOO measures
 
